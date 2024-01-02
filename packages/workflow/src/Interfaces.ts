@@ -751,7 +751,7 @@ export interface RequestHelperFunctions {
 
 export interface FunctionsBase {
 	logger: Logger;
-	getCredentials(type: string, itemIndex?: number): Promise<ICredentialDataDecryptedObject>;
+	getCredentials<T = ICredentialDataDecryptedObject>(type: string, itemIndex?: number): Promise<T>;
 	getExecutionId(): string;
 	getNode(): INode;
 	getWorkflow(): IWorkflowMetadata;
@@ -2122,11 +2122,6 @@ export interface IConnectedNode {
 	depth: number;
 }
 
-export const enum OAuth2GrantType {
-	pkce = 'pkce',
-	authorizationCode = 'authorizationCode',
-	clientCredentials = 'clientCredentials',
-}
 export interface IOAuth2Credentials {
 	grantType: 'authorizationCode' | 'clientCredentials' | 'pkce';
 	clientId: string;
